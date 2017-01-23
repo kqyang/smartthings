@@ -45,23 +45,19 @@ def parse(String description) {
 }
 
 def on() {
-  log.debug "on"
   sendEvent(name: "switch", value: "on")
   if (parent.switches != null) parent.switches.on()
 }
 
 def off() {
-  log.debug "off"
   sendEvent(name: "switch", value: "off")
   if (parent.switches != null) parent.switches.off()
 }
 
 def lock() {
-  log.debug "lock"
   if (parent.locks != null) parent.locks.lock()
 }
 
 def unlock() {
-  log.debug "unlock"
   if (parent.locks != null) parent.locks.unlock()
 }

@@ -31,7 +31,7 @@ preferences {
   page(name: "mainPage", title: "New Virtual Device", install: true,
        uninstall: true) {
     section {
-      label(title: "Device Label:", required: true)
+      input("deviceLabel", "text", title: "Device Label", required: true)
       input("switches", "capability.switch", multiple: true,
             title: "Select Switches", required: false)
       input("locks", "capability.lock", multiple: true, title: "Select Locks",
@@ -45,7 +45,6 @@ def installed() {
   initialize()
 }
 
-
 def updated() {
   log.debug "Updated with settings: ${settings}"
   unsubscribe()
@@ -53,6 +52,7 @@ def updated() {
 }
 
 def initialize() {
+  app.updateLabel(deviceLabel)
   try {
     def devices = getChildDevices()
     if (devices) {
